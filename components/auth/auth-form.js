@@ -1,38 +1,24 @@
-import { useState } from 'react';
-import classes from './auth-form.module.css';
+import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import HomeWrapper from "../layout/HomeWrapper";
 
-function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true);
-
-  function switchAuthModeHandler() {
-    setIsLogin((prevState) => !prevState);
-  }
+const AuthForm = () => {
+  const session = useSession();
+  const supabase = useSupabaseClient();
 
   return (
-    <section className={classes.auth}>
-      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <form>
-        <div className={classes.control}>
-          <label htmlFor='email'>Your Email</label>
-          <input type='email' id='email' required />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='password'>Your Password</label>
-          <input type='password' id='password' required />
-        </div>
-        <div className={classes.actions}>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
-          <button
-            type='button'
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? 'Create new account' : 'Login with existing account'}
-          </button>
-        </div>
-      </form>
-    </section>
+      <div className="container mx-auto max-w-xl p-6">
+        {!session ? (
+          <Auth
+            supabaseClient={supabase}
+            appearance={{ theme: ThemeSupa }}
+            theme="minmial"
+          />
+        ) : (
+          <p>Account page will go here.</p>
+        )}
+      </div>
   );
-}
+};
 
 export default AuthForm;
