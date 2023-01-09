@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LeftMenu from "./wrapper-parts/left-menu-links";
+import RightLinks from "./wrapper-parts/right-menu-links";
 
 export default function HomeWrapper(props) {
   return (
@@ -13,37 +15,12 @@ export default function HomeWrapper(props) {
             <h1 className="text-3xl font-extrabold">MatchJournal</h1>
             {/* Left Menu */}
             <div className="hidden space-x-8 font-bold lg:flex">
-              <Link
-                href="/"
-                className="text-grayishViolet hover:text-veryDarkViolet"
-              >
-                Home
-              </Link>
-              <Link
-                href="/"
-                className="text-grayishViolet hover:text-veryDarkViolet"
-              >
-                Features
-              </Link>
-              <Link
-                href="/"
-                className="text-grayishViolet hover:text-veryDarkViolet"
-              >
-                Feedback
-              </Link>
+              <LeftMenu />
             </div>
           </div>
           {/* Right buttons menu */}
           <div className="hidden items-center space-x-6 font-bold text-grayishViolet lg:flex">
-            <Link href="/auth" className="hover:text-veryDarkViolet">
-              Login
-            </Link>
-            <Link
-              href="/auth"
-              className="rounded-full bg-cyan px-8 py-3 font-bold text-white hover:opacity-70"
-            >
-              Sign Up
-            </Link>
+            <RightLinks />
           </div>
           {/* Hamberget Menu */}
           <button id="menu-btn" className="block hamburger lg:hidden focus:outline-none" type="button">

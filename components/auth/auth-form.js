@@ -1,6 +1,5 @@
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import HomeWrapper from "../layout/HomeWrapper";
 
 const AuthForm = () => {
   const session = useSession();
