@@ -1,7 +1,8 @@
-import Link from "next/link";
-import HomeWrapper from "../components/layout/HomeWrapper";
+import HomeWrapper from "../layout/HomeWrapper";
 
-function Home() {
+function StartingPageContent() {
+  // Show Link to Login page if NOT auth
+
   return (
     <HomeWrapper>
       <section id="home">
@@ -28,4 +29,5 @@ function Home() {
     </HomeWrapper>
   );
 }
-export default Home;
+
+export default StartingPageContent;

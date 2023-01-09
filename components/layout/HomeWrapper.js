@@ -35,11 +35,11 @@ export default function HomeWrapper(props) {
           </div>
           {/* Right buttons menu */}
           <div className="hidden items-center space-x-6 font-bold text-grayishViolet lg:flex">
-            <Link href="/" className="hover:text-veryDarkViolet">
+            <Link href="/auth" className="hover:text-veryDarkViolet">
               Login
             </Link>
             <Link
-              href="/"
+              href="/auth"
               className="rounded-full bg-cyan px-8 py-3 font-bold text-white hover:opacity-70"
             >
               Sign Up
