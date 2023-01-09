@@ -1,10 +1,25 @@
 import { Fragment, useState } from "react";
 import Link from "next/link";
+import { useSession } from "@supabase/auth-helpers-react";
+import Hamburger from "./menu-pieces.js/hamburger";
+import MenuList from "./menu-pieces.js/links-list";
 
-export default function Hamburger() {
+export default function Menu() {
   const [open, setOpen] = useState(false);
+  const session = useSession(); // implement changing profile and logout on website
 
-  function hamburgerHandler() {
+  let first = 'Log In'
+  let second = 'Sign Up'
+
+  if (session) {
+    first = 'Logout'
+    second = 'Profile'
+  } else {
+    first = 'Log In'
+    second = 'Sign Up'
+  }
+
+  function menuHandler() {
     if (open) {
       setOpen(false);
     } else {
@@ -15,75 +30,17 @@ export default function Hamburger() {
   if (!open) {
     return (
       <Fragment>
-        <button className="lg:hidden" onClick={hamburgerHandler}>
-          Hamberger
-        </button>
+        <Hamburger function={menuHandler} />
 
-        <div
-          id="menu"
-          className="z-100 absolute left-6 right-6 top-20 hidden rounded-lg bg-darkViolet p-6"
-        >
-          <div className="jusitify-center flex w-full flex-col items-center space-y-6 rounded-sm font-bold text-white">
-            <Link href="/" className="w-full text-center">
-              Home
-            </Link>
-            <Link href="/" className="w-full text-center">
-              Features
-            </Link>
-            <Link href="/" className="w-full text-center">
-              Feedback
-            </Link>
-            <Link
-              href={"/"}
-              className="w-full border-t border-gray-400 pt-6 text-center"
-            >
-              Login
-            </Link>
-            <Link
-              href="/"
-              className="w-full rounded-full bg-cyan py-3 text-center"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </div>
+        <MenuList hidden='hidden' first={first} second={second} menuHandler={menuHandler}/>
       </Fragment>
     );
   } else {
     return (
       <Fragment>
-        <button className="lg:hidden" onClick={hamburgerHandler}>
-          Hamberger
-        </button>
+        <Hamburger function={menuHandler} />
 
-        <div
-          id="menu"
-          className="z-100 absolute left-6 right-6 top-20 rounded-lg bg-darkViolet p-6"
-        >
-          <div className="jusitify-center flex w-full flex-col items-center space-y-6 rounded-sm font-bold text-white">
-            <Link href="/" className="w-full text-center">
-              Home
-            </Link>
-            <Link href="/" className="w-full text-center">
-              Features
-            </Link>
-            <Link href="/" className="w-full text-center">
-              Feedback
-            </Link>
-            <Link
-              href={"/"}
-              className="w-full border-t border-gray-400 pt-6 text-center"
-            >
-              Login
-            </Link>
-            <Link
-              href="/"
-              className="w-full rounded-full bg-cyan py-3 text-center"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </div>
+        <MenuList hidden='' first={first} second={second} menuHandler={menuHandler}/>
       </Fragment>
     );
   }

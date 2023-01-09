@@ -1,7 +1,7 @@
 import Link from "next/link";
 import LeftMenu from "./wrapper-parts/left-menu-links";
 import RightLinks from "./wrapper-parts/right-menu-links";
-import Hamburger from "./wrapper-parts/menu";
+import Menu from "./wrapper-parts/menu";
 
 export default function HomeWrapper(props) {
   return (
@@ -34,7 +34,7 @@ export default function HomeWrapper(props) {
             <span className="hamburger-bottom"></span>
           </button> */}
           <div className="lg:hidden">
-            <Hamburger />
+            <Menu />
           </div>
         </div>
         {/* Mobile Menu */}
