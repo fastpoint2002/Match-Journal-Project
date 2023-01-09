@@ -27,7 +27,8 @@ export default function Menu() {
     }
   }
 
-  if (!open) {
+  // it is flipped but works for some reason
+  if (open) {
     return (
       <Fragment>
         <Hamburger function={menuHandler} />

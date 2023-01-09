@@ -7,10 +7,10 @@ export default function LeftMenu() {
       <Link href="/" className="text-grayishViolet hover:text-veryDarkViolet">
         Home
       </Link>
-      <Link href="/" className="text-grayishViolet hover:text-veryDarkViolet">
+      <Link href="/features" className="text-grayishViolet hover:text-veryDarkViolet">
         Features
       </Link>
-      <Link href="/" className="text-grayishViolet hover:text-veryDarkViolet">
+      <Link href="/feedback" className="text-grayishViolet hover:text-veryDarkViolet">
         Feedback
       </Link>
     </Fragment>

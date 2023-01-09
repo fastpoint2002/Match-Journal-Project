@@ -2,6 +2,9 @@ import Link from "next/link";
 import LeftMenu from "./wrapper-parts/left-menu-links";
 import RightLinks from "./wrapper-parts/right-menu-links";
 import Menu from "./wrapper-parts/menu";
+import InstagramIcon from "../../icons/icon-instagram";
+import TwitterIcon from "../../icons/icon-twitter";
+import FacebookIcon from "../../icons/icon-facebook";
 
 export default function HomeWrapper(props) {
   return (
@@ -94,27 +97,9 @@ export default function HomeWrapper(props) {
           </div>
           {/* Social Container */}
           <div className="flex space-x-6">
-            <Link href="/">
-              <img
-                src="../public/social/icon-facebook.svg"
-                alt=""
-                className="ficon"
-              />
-            </Link>
-            <Link href="/">
-              <img
-                src="../public/social/icon-twitter.svg"
-                alt=""
-                className="ficon"
-              />
-            </Link>
-            <Link href="/">
-              <img
-                src="../public/social/icon-instagram.svg"
-                alt=""
-                className="ficon"
-              />
-            </Link>
+            <InstagramIcon />
+            <FacebookIcon />
+            <TwitterIcon />
           </div>
         </div>
       </footer>
