@@ -6,11 +6,11 @@ export default function HomeInfo() {
     <HomeWrapper>
       <section id="home">
         <div className="container mx-auto flex flex-col-reverse justify-center p-6 lg:flex-row">
-          <div className="mb-44 flex flex-col space-y-10 lg:mt-16 lg:w-1/2 xl:mb-52">
-            <h1 className="text-center text-5xl font-bold lg:max-w-md lg:text-center lg:text-6xl">
+          <div className="mb-44 flex flex-col items-center space-y-10 lg:mt-16 lg:w-4/5 xl:mb-52">
+            <h1 className="text-center text-5xl font-bold lg:max-w-2xl lg:text-center lg:text-6xl">
               More than just a journal
             </h1>
-            <p className="text-center text-2xl text-gray-400 lg:max-w-md lg:text-center">
+            <p className="text-center text-2xl text-gray-400 lg:max-w-lg lg:text-center">
               Build your personal match database and get detailed insights on
               your performance
             </p>

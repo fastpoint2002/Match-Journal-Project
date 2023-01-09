@@ -1,10 +1,11 @@
 import Link from "next/link";
 import LeftMenu from "./wrapper-parts/left-menu-links";
 import RightLinks from "./wrapper-parts/right-menu-links";
+import Hamburger from "./wrapper-parts/menu";
 
 export default function HomeWrapper(props) {
   return (
-    <div>
+    <div className="flex flex-col justify-between h-screen">
       {/* Nav Container */}
       <nav className="container relative mx-auto p-6">
         {/* Flex container for all items */}
@@ -22,30 +23,28 @@ export default function HomeWrapper(props) {
           <div className="hidden items-center space-x-6 font-bold text-grayishViolet lg:flex">
             <RightLinks />
           </div>
-          {/* Hamberget Menu */}
-          <button id="menu-btn" className="block hamburger lg:hidden focus:outline-none" type="button">
+          {/* Hamberger Menu */}
+          {/* <button
+            id="menu-btn"
+            className="hamburger block focus:outline-none"
+            type="button"
+          >
             <span className="hamburger-top"></span>
             <span className="hamburger-middle"></span>
             <span className="hamburger-bottom"></span>
-          </button>
+          </button> */}
+          <div className="lg:hidden">
+            <Hamburger />
+          </div>
         </div>
         {/* Mobile Menu */}
-        <div id="menu" className="absolute hidden p-6 rounded-lg bg-darkViolet left-6 right-6 top-20 z-100">
-            <div className="flex flex-col items-center jusitify-center w-full space-y-6 font-bold text-white rounded-sm">
-                <Link href="/" className="w-full text-center">Home</Link>
-                <Link href="/" className="w-full text-center">Features</Link>
-                <Link href="/" className="w-full text-center">Feedback</Link>
-                <Link href={'/'} className="w-full pt-6 border-t border-gray-400 text-center">Login</Link>
-                <Link href="/" className="w-full py-3 text-center rounded-full bg-cyan">Sign Up</Link>
-            </div>
-        </div>
       </nav>
       {props.children}
 
       <footer className="bg-veryDarkViolet py-16">
         <div className="jusitfy-between container mx-auto flex flex-col items-center space-y-16 md:flex-row md:items-start md:space-y-0">
           {/* Menus Container */}
-          <div className="flex flex-col space-y-16 md:flex-row md:space-x-20 md:space-y-0">
+          <div className="flex flex-col space-y-16 md:flex-row md:space-x-20 md:space-y-0 mx-auto">
             {/* Menu 1 */}
             <div className="flex w-full flex-col items-center md:items-start">
               <div className="mb-5 font-bold capitalize text-white">
@@ -96,13 +95,25 @@ export default function HomeWrapper(props) {
           {/* Social Container */}
           <div className="flex space-x-6">
             <Link href="/">
-                <img src="../public/social/icon-facebook.svg" alt="" className="ficon" />
+              <img
+                src="../public/social/icon-facebook.svg"
+                alt=""
+                className="ficon"
+              />
             </Link>
             <Link href="/">
-                <img src="../public/social/icon-twitter.svg" alt="" className="ficon" />
+              <img
+                src="../public/social/icon-twitter.svg"
+                alt=""
+                className="ficon"
+              />
             </Link>
             <Link href="/">
-                <img src="../public/social/icon-instagram.svg" alt="" className="ficon" />
+              <img
+                src="../public/social/icon-instagram.svg"
+                alt=""
+                className="ficon"
+              />
             </Link>
           </div>
         </div>
