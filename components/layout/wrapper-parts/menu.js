@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import Link from "next/link";
 import { useSession } from "@supabase/auth-helpers-react";
 import Hamburger from "./menu-pieces.js/hamburger";
 import MenuList from "./menu-pieces.js/links-list";
@@ -8,15 +7,21 @@ export default function Menu() {
   const [open, setOpen] = useState(false);
   const session = useSession(); // implement changing profile and logout on website
 
-  let first = 'Log In'
-  let second = 'Sign Up'
+  let first = "Log In";
+  let second = "Sign Up";
+  let flink = "";
+  let slink = "profile";
 
   if (session) {
-    first = 'Logout'
-    second = 'Profile'
+    first = "Logout";
+    second = "Profile";
+    flink = "";
+    slink = "profile";
   } else {
-    first = 'Log In'
-    second = 'Sign Up'
+    first = "Log In";
+    second = "Sign Up";
+    flink = "auth";
+    slink = "auth";
   }
 
   function menuHandler() {
@@ -33,7 +38,14 @@ export default function Menu() {
       <Fragment>
         <Hamburger function={menuHandler} />
 
-        <MenuList hidden='hidden' first={first} second={second} menuHandler={menuHandler}/>
+        <MenuList
+          hidden="hidden"
+          first={first}
+          second={second}
+          menuHandler={menuHandler}
+          flink={flink}
+          slink={slink}
+        />
       </Fragment>
     );
   } else {
@@ -41,7 +53,14 @@ export default function Menu() {
       <Fragment>
         <Hamburger function={menuHandler} />
 
-        <MenuList hidden='' first={first} second={second} menuHandler={menuHandler}/>
+        <MenuList
+          hidden=""
+          first={first}
+          second={second}
+          menuHandler={menuHandler}
+          flink={flink}
+          slink={slink}
+        />
       </Fragment>
     );
   }

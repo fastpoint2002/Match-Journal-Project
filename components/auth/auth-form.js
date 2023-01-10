@@ -1,23 +1,31 @@
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import HomeWrapper from "../layout/HomeWrapper";
+import { useRouter } from "next/router";
 
 const AuthForm = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
+  const router = useRouter();
 
-  return (
+  if (!session) {
+    return (
+      <HomeWrapper>
       <div className="container mx-auto max-w-xl p-6">
-        {!session ? (
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             theme="minmial"
           />
-        ) : (
-          <p>Account page will go here.</p>
-        )}
       </div>
-  );
+    </HomeWrapper>
+    )
+  } else {
+    router.push({
+      pathname: '/profile',
+      query: {}
+    }, '/profile')
+  }
 };
 
 export default AuthForm;

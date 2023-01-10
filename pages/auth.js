@@ -1,12 +1,7 @@
 import AuthForm from "../components/auth/auth-form";
-import HomeWrapper from "../components/layout/HomeWrapper";
 
 function AuthPage() {
-  return (
-    <HomeWrapper>
-      <AuthForm />
-    </HomeWrapper>
-  );
+  return <AuthForm />;
 }
 
 export default AuthPage;

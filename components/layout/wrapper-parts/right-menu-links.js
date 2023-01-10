@@ -1,15 +1,13 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import {
-  useSession,
+  useSessionContext, useSupabaseClient,
 } from "@supabase/auth-helpers-react";
 
 export default function RightLinks() {
-  const session = useSession();
+  const session = useSessionContext();
 
-  function logoutHandler() {
-    // figure out
-  }
+  const supabase = useSupabaseClient();
 
   if (!session) {
     return (
@@ -29,10 +27,10 @@ export default function RightLinks() {
     return (
       <Fragment>
         <Link href="/" className="hover:text-veryDarkViolet">
-          <button onClick={logoutHandler}>Logout</button>
+          <button onClick={() => supabase.auth.signOut()}>Logout</button>
         </Link>
         <Link
-          href="/auth"
+          href="/profile"
           className="rounded-full bg-cyan px-8 py-3 font-bold text-black hover:opacity-70"
         >
           Profile
