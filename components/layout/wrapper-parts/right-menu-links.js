@@ -27,7 +27,7 @@ export default function RightLinks() {
     return (
       <Fragment>
         <Link href="/" className="hover:text-veryDarkViolet">
-          <button onClick={() => supabase.auth.signOut()}>Logout</button>
+          <button onClick={async () => await supabase.auth.signOut()}>Logout</button>
         </Link>
         <Link
           href="/profile"

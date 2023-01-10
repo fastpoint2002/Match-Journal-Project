@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LogoutButton from "./logout-button";
 
 export default function MenuList(props) {
   const mainClassString =
@@ -6,8 +7,11 @@ export default function MenuList(props) {
     props.hidden;
 
   function signOut() {
-    if (props.first === 'Logout') {
-        supabase.auth.signOut();
+    if (props.first === "Logout") {
+      async () => {
+        await supabaseClient.auth.signOut();
+        console.log(test)
+      };
     }
     props.menuHandler();
   }
@@ -36,13 +40,7 @@ export default function MenuList(props) {
         >
           Feedback
         </Link>
-        <Link
-          href={"/" + props.flink}
-          className="w-full border-t border-gray-400 pt-6 text-center"
-          onClick={signOut}
-        >
-          {props.first}
-        </Link>
+        <LogoutButton first={props.first}/>
         <Link
           href={"/" + props.slink}
           className="w-full rounded-full bg-cyan py-3 text-center"

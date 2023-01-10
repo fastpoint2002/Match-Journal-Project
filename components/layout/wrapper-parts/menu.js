@@ -1,11 +1,11 @@
 import { Fragment, useState } from "react";
-import { useSession } from "@supabase/auth-helpers-react";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 import Hamburger from "./menu-pieces.js/hamburger";
 import MenuList from "./menu-pieces.js/links-list";
 
 export default function Menu() {
   const [open, setOpen] = useState(false);
-  const session = useSession(); // implement changing profile and logout on website
+  const session = useSessionContext(); // implement changing profile and logout on website
 
   let first = "Log In";
   let second = "Sign Up";
