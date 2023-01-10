@@ -1,20 +1,13 @@
+import { useSessionContext, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Link from "next/link";
-import LogoutButton from "./logout-button";
 
 export default function MenuList(props) {
+  const session = useSessionContext();
+  const supabase = useSupabaseClient();
+
   const mainClassString =
     "z-100 absolute left-6 right-6 top-20 rounded-lg bg-darkViolet p-6 hidden" +
     props.hidden;
-
-  function signOut() {
-    if (props.first === "Logout") {
-      async () => {
-        await supabaseClient.auth.signOut();
-        console.log(test)
-      };
-    }
-    props.menuHandler();
-  }
 
   return (
     <div id="menu" className={mainClassString}>
@@ -40,14 +33,31 @@ export default function MenuList(props) {
         >
           Feedback
         </Link>
-        <LogoutButton first={props.first}/>
-        <Link
-          href={"/" + props.slink}
-          className="w-full rounded-full bg-cyan py-3 text-center"
-          onClick={props.menuHandler}
+        {session.session && (<Link
+          href={"/"}
+          className="w-full border-t border-gray-400 pt-6 text-center"
+          onClick={async () => await supabase.auth.signOut()}
         >
-          {props.second}
-        </Link>
+          Logout
+        </Link>)}
+        {!session.session && (<Link
+        href={"/auth"}
+        className="w-full border-t border-gray-400 pt-6 text-center"
+      >
+        Login
+      </Link>)}
+        {session.session && (<Link
+          href={"/auth"}
+          className="w-full rounded-full bg-cyan py-3 text-center"
+        >
+          Profile
+        </Link>)}
+        {!session.session && (<Link
+          href={"/profile"}
+          className="w-full rounded-full bg-cyan py-3 text-center"
+        >
+          Sign Up
+        </Link>)}
       </div>
     </div>
   );
