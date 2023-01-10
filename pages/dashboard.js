@@ -1,8 +1,8 @@
-import UserProfile from "../components/layout/profile/user-profile";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import DashboardDisplay from "../components/layout/main-pages/dashboard-layout";
 
-function ProfilePage() {
-  return <UserProfile />;
+function DashboardPage() {
+  return <DashboardDisplay />;
 }
 
 export const getServerSideProps = async (ctx) => {
@@ -33,4 +33,4 @@ export const getServerSideProps = async (ctx) => {
   }
 }
 
-export default ProfilePage;
+export default DashboardPage;

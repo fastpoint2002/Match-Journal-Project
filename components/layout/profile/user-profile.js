@@ -1,4 +1,4 @@
-import HomeWrapper from "../layout/HomeWrapper";
+import HomeWrapper from "../HomeWrapper";
 import ProfileForm from "./profile-form";
 import classes from "./user-profile.module.css";
 
