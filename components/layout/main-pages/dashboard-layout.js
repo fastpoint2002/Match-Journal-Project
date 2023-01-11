@@ -13,6 +13,8 @@ export default function DashboardDisplay() {
         setHidden("");
       }
     }
+
+    
   
     return (
     <HomeWrapper>

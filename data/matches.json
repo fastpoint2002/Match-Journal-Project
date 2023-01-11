@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "created_at": "2023-01-11T20:42:09.965217+00:00",
+    "user_id": "0d0c49e0-117b-4cd5-897d-78db6e343fc7",
+    "is_win": true,
+    "date": "2023-01-01",
+    "username": "test",
+    "notes": "This is a test",
+    "opponent": "Myself",
+    "is_singles": true
+  }
+]
