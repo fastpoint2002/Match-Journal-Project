@@ -7,7 +7,7 @@ export default function DashItems() {
   //Set up SWR to run the fetcher function when calling "/api/staticdata"
   //There are 3 possible states: (1) loading when data is null (2) ready when the data is returned (3) error when there was an error fetching the data
   //   Gets data from the matches.json file 
-  const { data, error, isLoading } = useSWR('/api/matchData', fetcher)
+  const { data, error, isLoading } = useSWR('/api/getMatchData', fetcher)
 
   
   //Handle the error state
@@ -16,7 +16,6 @@ export default function DashItems() {
   if (isLoading) return <div>loading...</div> 
   
   const matchData = JSON.parse(data)
-
 
   return (
     <div className="mx-6 my-8 flex flex-col items-center">
@@ -46,13 +45,17 @@ export default function DashItems() {
               </span>
             )}
             {/* Date Tag */}
-            <span className="mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
+            {match.date && (<span className="mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
               {match.date}
-            </span>
+            </span>)}
             {/* Match Type Tag */}
-            <span className="inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
+            <span className="mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
               {match.is_singles && (<>Singles</>)}
               {!match.is_singles && (<>Doubles</>)}
+            </span>
+            {/* Score Tag */}
+            <span className="mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
+              {match.score}
             </span>
           </div>
         </button>
