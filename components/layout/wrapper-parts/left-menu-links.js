@@ -7,7 +7,7 @@ export default function LeftMenu() {
 
   return (
     <Fragment>
-      {session && (
+      {session.session && (
         <Fragment>
           <Link
             href="/dashboard"

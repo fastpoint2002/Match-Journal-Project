@@ -12,7 +12,7 @@ export default function MenuList(props) {
   return (
     <div id="menu" className={mainClassString}>
       <div className="jusitify-center flex w-full flex-col items-center space-y-6 rounded-sm font-bold text-white">
-        {session && (<Link
+        {session.session && (<Link
           href="/dashboard"
           className="w-full text-center"
           onClick={props.menuHandler}
