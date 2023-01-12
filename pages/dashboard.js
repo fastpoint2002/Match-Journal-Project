@@ -2,8 +2,6 @@ import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import DashboardDisplay from "../components/layout/main-pages/dashboard-layout";
 import fs from 'fs'
 import path from 'path'
-import useSWR from 'swr'
-
 
 function DashboardPage() {
   return <DashboardDisplay />;

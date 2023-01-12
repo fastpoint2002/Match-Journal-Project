@@ -2,9 +2,9 @@ import Link from "next/link";
 import LeftMenu from "./wrapper-parts/left-menu-links";
 import RightLinks from "./wrapper-parts/right-menu-links";
 import Menu from "./wrapper-parts/menu";
-import InstagramIcon from "../../icons/icon-instagram";
-import TwitterIcon from "../../icons/icon-twitter";
-import FacebookIcon from "../../icons/icon-facebook";
+import InstagramIcon from "../../public/icons/icon-instagram";
+import TwitterIcon from "../../public/icons/icon-twitter";
+import FacebookIcon from "../../public/icons/icon-facebook";
 
 export default function HomeWrapper(props) {
   return (
