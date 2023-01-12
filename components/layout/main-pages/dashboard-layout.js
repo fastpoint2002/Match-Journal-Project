@@ -1,7 +1,7 @@
 import HomeWrapper from "../HomeWrapper";
-import DashModal from "./dashboard-components/dash-modal";
 import DashPage from "./dashboard-components/dash-page";
 import { useState } from "react";
+import CreateMatchModal from "./dashboard-components/create-match-modal";
 
 export default function DashboardDisplay() {
     const [hidden, setHidden] = useState("hidden");
@@ -19,7 +19,7 @@ export default function DashboardDisplay() {
     return (
     <HomeWrapper>
       <DashPage modalHandler={modalHandler}/>
-      <DashModal modalHandler={modalHandler} hidden={hidden}/>
+      <CreateMatchModal modalHandler={modalHandler} hidden={hidden}/>
     </HomeWrapper>
   );
 }

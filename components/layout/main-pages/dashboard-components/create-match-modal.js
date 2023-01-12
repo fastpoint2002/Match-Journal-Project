@@ -1,9 +1,36 @@
-export default function DashModal(props) {
-  const mainClassString = props.hidden;
+import { useRef } from "react";
 
+export default function CreateMatchModal(props) {
+  const mainClassString = props.hidden;
+  const opponentRef = useRef();
+  const dateRef = useRef();
+  const isWinRef = useRef();
+  const scoreRef = useRef();
+  const surfaceRef = useRef();
+  const notesRef = useRef();
+
+  function submitFormHandler(event) {
+    event.preventDefault();
+
+    const opponent = opponentRef.current.value;
+    const date = dateRef.current.value;
+    const is_win = isWinRef.current.value;
+    const score = scoreRef.current.value;
+    const surface = surfaceRef.current.value;
+    const notes = notesRef.current.value;
+
+    console.log(opponent);
+    console.log(date);
+    console.log(is_win);
+    console.log(score);
+    console.log(surface);
+    console.log(notes);
+
+    props.modalHandler.call();
+  }
 
   return (
-    // hides and unhides the modal 
+    // hides and unhides the modal
     <div className={mainClassString}>
       <div
         className={
@@ -33,7 +60,10 @@ export default function DashModal(props) {
               </div>
             </div>
           </div>
-          <form className="flex flex-col justify-start px-4 py-5 sm:px-6 sm:py-5">
+          <form
+            onSubmit={submitFormHandler}
+            className="flex flex-col justify-start px-4 py-5 sm:px-6 sm:py-5"
+          >
             <div className="mb-3 py-3">
               <label className="block text-sm font-medium leading-5 text-gray-700">
                 Opponent
@@ -41,6 +71,7 @@ export default function DashModal(props) {
               <input
                 className="form-input mt-1 rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
                 type="text"
+                ref={opponentRef}
               />
             </div>
             <div className="mb-3 py-3">
@@ -50,51 +81,48 @@ export default function DashModal(props) {
               <input
                 className="form-input mt-1 rounded-md py-2 px-3 leading-5 text-gray-900"
                 type="date"
+                ref={dateRef}
               />
             </div>
-            <div className="flex py-3 justify-start">
-              <label className="block text-sm pr-4 font-medium leading-5 text-gray-700">
-                Win/Loss
-              </label>
-              <div className="relative inline-block text-left">
-                <input
-                  id="win"
-                  type="radio"
-                  name="winloss"
-                  className="form-radio h-4 w-4 text-green-600 transition duration-150 ease-in-out"
-                />
-                <label htmlFor="win" className="ml-2">
-                  Win
+            <div className="flex">
+              <div className="mb-3 py-3">
+                <label className="block text-sm font-medium leading-5 text-gray-700">
+                  Win/Loss
                 </label>
+                <div className="relative">
+                  <select
+                    ref={isWinRef}
+                    required
+                    className="form-select rounded-md border border-gray-400 bg-white py-2 px-3 leading-5 text-gray-900 focus:border-blue-500 focus:outline-none"
+                  >
+                    <option></option>
+                    <option>Win</option>
+                    <option>Loss</option>
+                  </select>
+                </div>
               </div>
-              <div className="relative ml-6 inline-block text-left">
-                <input
-                  id="loss"
-                  type="radio"
-                  name="winloss"
-                  className="form-radio text-red-600 h-4 w-4 transition duration-150 ease-in-out"
-                />
-                <label htmlFor="loss" className="ml-2">
-                  Loss
+              <div className="flex items-center">
+                <label className="ml-10 block text-sm font-medium leading-5 text-gray-700">
+                  Score
                 </label>
+                <input
+                  className="form-input mt-1 ml-3 rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
+                  type="text"
+                  placeholder="Score"
+                  ref={scoreRef}
+                />
               </div>
-            </div>
-            <div className="flex py-3 items-center">
-              <label className="block text-sm font-medium leading-5 text-gray-700">
-                Score
-              </label>
-              <input
-                className="form-input mt-1 ml-8 rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
-                type="text"
-                placeholder="Score"
-              />
             </div>
             <div className="mb-3 py-3">
               <label className="block text-sm font-medium leading-5 text-gray-700">
                 Surface
               </label>
               <div className="relative">
-                <select className="form-select rounded-md border border-gray-400 bg-white py-2 px-3 leading-5 text-gray-900 focus:border-blue-500 focus:outline-none">
+                <select
+                  ref={surfaceRef}
+                  className="form-select rounded-md border border-gray-400 bg-white py-2 px-3 leading-5 text-gray-900 focus:border-blue-500 focus:outline-none"
+                >
+                  <option></option>
                   <option>Hard</option>
                   <option>Indoor</option>
                   <option>Clay</option>
@@ -106,8 +134,9 @@ export default function DashModal(props) {
                 Notes
               </label>
               <textarea
-                className="form-input rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
-                rows="3"
+                className="form-input w-full rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
+                rows="5"
+                ref={notesRef}
               ></textarea>
             </div>
             <div className="flex justify-end">
