@@ -1,7 +1,5 @@
-import PageConstructionMessage from "../components/layout/main-pages/construction";
+import FeedbackInfo from "../components/layout/main-pages/feedback";
 
 export default function FeedbackPage() {
-    return (
-        <PageConstructionMessage />
-    )
+  return <FeedbackInfo />;
 }
