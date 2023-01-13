@@ -11,8 +11,8 @@ export default function CreateMatchModal(props) {
   const surfaceRef = useRef();
   const notesRef = useRef();
   const singlesRef = useRef();
-  let tempId = 10000000000
-  
+  let tempId = 10000000000;
+
   async function submitFormHandler(event) {
     // can use this to prevent reload but won't for now because needs to fetch after sending
     // good for debugging as well
@@ -32,7 +32,7 @@ export default function CreateMatchModal(props) {
     props.modalHandler.call();
     document.getElementById("newMatch").reset();
 
-    tempId++
+    tempId++;
     // updates local match data file
     props.data.push({
       id: tempId,
@@ -45,20 +45,22 @@ export default function CreateMatchModal(props) {
       score: score, // required
       surface: surface,
       user_id: props.user.id, // required
-    })
+    });
 
     const newMatchData = {};
 
     // add keys to object if valid to prevent error in uploading to database
-    opponent !== null ? newMatchData.opponent = opponent : null
-    props.user.username !== null ? newMatchData.username = props.user.username : null
-    did_win !== null ? newMatchData.is_win = did_win : null
-    date !== null ? newMatchData.date = date : null
-    notes !== null ? newMatchData.notes = notes : null
-    is_singles !== null ? newMatchData.is_singles = is_singles : null
-    score !== null ? newMatchData.score = score : null
-    surface !== null ? newMatchData.surface = surface : null
-    props.user.id !== null ? newMatchData.user_id = props.user.id : null
+    opponent !== null ? (newMatchData.opponent = opponent) : null;
+    props.user.username !== null
+      ? (newMatchData.username = props.user.username)
+      : null;
+    did_win !== null ? (newMatchData.is_win = did_win) : null;
+    date !== null ? (newMatchData.date = date) : null;
+    notes !== null ? (newMatchData.notes = notes) : null;
+    is_singles !== null ? (newMatchData.is_singles = is_singles) : null;
+    score !== null ? (newMatchData.score = score) : null;
+    surface !== null ? (newMatchData.surface = surface) : null;
+    props.user.id !== null ? (newMatchData.user_id = props.user.id) : null;
 
     // testing
     // console.log({
@@ -74,9 +76,9 @@ export default function CreateMatchModal(props) {
     // });
 
     // sends new match to supabase
-    const { data, error } = await supabase.from("matches").insert([
-      newMatchData
-    ]);
+    const { data, error } = await supabase
+      .from("matches")
+      .insert([newMatchData]);
   }
 
   return (
@@ -118,10 +120,13 @@ export default function CreateMatchModal(props) {
             <div className="flex justify-between">
               <div className="py-5">
                 <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Opponent
+                  <div className="flex">
+                    Opponent<p className="text-orange-600">*</p>
+                  </div>
                 </label>
                 <input
-                required
+                  required
+                  placeholder="Nick Kyrgios"
                   className="form-input mt-1 rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
                   type="text"
                   ref={opponentRef}
@@ -129,7 +134,9 @@ export default function CreateMatchModal(props) {
               </div>
               <div className="ml-3 mr-16 py-5">
                 <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Singles/Doubles
+                  <div className="flex">
+                    Singles/Doubles<p className="text-orange-600">*</p>
+                  </div>
                 </label>
                 <div className="relative">
                   <select
@@ -146,10 +153,12 @@ export default function CreateMatchModal(props) {
             <div className="flex justify-between align-middle">
               <div className="py-5">
                 <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Date
+                  <div className="flex">
+                    Date<p className="text-orange-600">*</p>
+                  </div>
                 </label>
                 <input
-                required
+                  required
                   className="form-input mt-1 rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
                   type="date"
                   ref={dateRef}
@@ -157,10 +166,13 @@ export default function CreateMatchModal(props) {
               </div>
               <div className="mr-16 py-5">
                 <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Surface
+                  <div className="flex">
+                    Surface<p className="text-orange-600">*</p>
+                  </div>
                 </label>
                 <div className="relative">
                   <select
+                  required
                     ref={surfaceRef}
                     className="form-select rounded-md border border-gray-400 bg-white py-2 px-3 leading-5 text-gray-900 focus:border-blue-500 focus:outline-none"
                   >
@@ -175,7 +187,9 @@ export default function CreateMatchModal(props) {
             <div className="flex items-center justify-between">
               <div className="py-5">
                 <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Win/Loss
+                  <div className="flex">
+                    Win/Loss<p className="text-orange-600">*</p>
+                  </div>
                 </label>
                 <div className="relative">
                   <select
@@ -190,13 +204,15 @@ export default function CreateMatchModal(props) {
               </div>
               <div className="ml-6 mr-16 flex flex-col">
                 <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Score
+                  <div className="flex">
+                    Score<p className="text-orange-600">*</p>
+                  </div>
                 </label>
                 <input
                   required
                   className="form-input rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
                   type="text"
-                  placeholder="Score"
+                  placeholder="6-0 6-0"
                   ref={scoreRef}
                 />
               </div>
@@ -207,13 +223,14 @@ export default function CreateMatchModal(props) {
                 Notes
               </label>
               <textarea
-              required
+              placeholder="Other important match factors - we will be upgrading the form in the future!"
                 className="form-input w-full rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
                 rows="5"
                 ref={notesRef}
               ></textarea>
             </div>
-            <div className="flex justify-end">
+            <div className="flex items-end justify-between">
+              <p className="text-left text-orange-600">*Required</p>
               <button
                 type="submit"
                 className="focus:shadow-outline-green inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium leading-5 text-white hover:bg-green-500 focus:border-green-700 focus:outline-none active:bg-green-800"

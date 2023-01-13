@@ -16,6 +16,7 @@ const AuthForm = () => {
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             theme="minmial"
+            providers={['google']}
           />
       </div>
     </HomeWrapper>

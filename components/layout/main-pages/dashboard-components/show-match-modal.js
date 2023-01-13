@@ -5,12 +5,11 @@ export default function ShowMatchModal(props) {
   const mainClassString = props.hidden;
   const data = props.data[props.matchIndex];
   const supabase = useSupabaseClient()
-  console.log(data)
 
   async function deleteMatchHandler() {
     const id = data.id;
 
-    if (props.matchIndex < 10000000000) {
+    if (id < 10000000000) {
       const { data2, error2 } = await supabase
         .from("matches")
         .delete()
@@ -122,7 +121,7 @@ export default function ShowMatchModal(props) {
               </div>
               <div className="flex items-center justify-end">
                 <p className="mr-4 text-left text-xs text-slate-400">
-                  Might have to refresh for button to work if just added (temporary bug)
+                  Might have to refresh for delete to work if just added (temporary bug)
                 </p>
                 <p className="mr-4 text-right text-xs text-slate-400">
                   Warning - There is no confirmation for delete

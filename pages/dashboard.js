@@ -1,8 +1,18 @@
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { Fragment } from "react";
 import DashboardDisplay from "../components/layout/main-pages/dashboard-layout";
+import Head from "next/head";
 
 function DashboardPage(props) {
-  return <DashboardDisplay data={props.data} user={props.user} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Dashboard | Match Journal</title>
+        <meta name="description" content="All your match data" />
+      </Head>
+      <DashboardDisplay data={props.data} user={props.user} />
+    </Fragment>
+  );
 }
 
 export const getServerSideProps = async (ctx) => {
@@ -24,7 +34,7 @@ export const getServerSideProps = async (ctx) => {
   // // Run queries with RLS on the server
   let { data: matches, error } = await supabase.from("matches").select("*");
   let { data: profiles, error2 } = await supabase.from("profiles").select("*");
-  const user_profile = profiles[0]
+  const user_profile = profiles[0];
 
   return {
     props: {
