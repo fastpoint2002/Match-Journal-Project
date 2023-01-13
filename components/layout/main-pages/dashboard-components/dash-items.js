@@ -1,21 +1,7 @@
-import useSWR from "swr";
 
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-export default function DashItems() {
-  //Set up SWR to run the fetcher function when calling "/api/staticdata"
-  //There are 3 possible states: (1) loading when data is null (2) ready when the data is returned (3) error when there was an error fetching the data
-  //   Gets data from the matches.json file 
-  const { data, error, isLoading } = useSWR('/api/getMatchData', fetcher)
-
-  
-  //Handle the error state
-  if (error) return <div>failed to load</div>
-  //Handle the loading state
-  if (isLoading) return <div>loading...</div> 
-  
-  const matchData = JSON.parse(data)
+export default function DashItems(props) {
+  const matchData = props.data
+  console.log(props.data)
 
   return (
     <div className="mx-6 my-8 flex flex-col items-center">

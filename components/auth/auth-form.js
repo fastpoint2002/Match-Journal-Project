@@ -22,9 +22,9 @@ const AuthForm = () => {
     )
   } else {
     router.push({
-      pathname: '/profile',
+      pathname: '/dashboard',
       query: {}
-    }, '/profile')
+    }, '/dashboard')
   }
 };
 

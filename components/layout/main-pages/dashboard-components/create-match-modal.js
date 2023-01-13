@@ -12,10 +12,12 @@ export default function CreateMatchModal(props) {
   const notesRef = useRef();
   const singlesRef = useRef();
 
+  console.log(props.user)
+  
   async function submitFormHandler(event) {
     // can use this to prevent reload but won't for now because needs to fetch after sending
     // good for debugging as well
-    // event.preventDefault();
+    event.preventDefault();
 
     const opponent = opponentRef.current.value;
     const date = dateRef.current.value;
@@ -31,51 +33,51 @@ export default function CreateMatchModal(props) {
     props.modalHandler.call();
     document.getElementById("newMatch").reset();
 
-    // const {
-    //   data: { user },
-    // } = await supabase.auth.getUser();
+    // updates local match data file
+    // props.data.push({
+    //   opponent: opponent,
+    //   username: props.user.username, // required
+    //   is_win: did_win, // required
+    //   date: date,
+    //   notes: notes,
+    //   is_singles: is_singles, // required
+    //   score: score, // required
+    //   surface: surface,
+    //   user_id: props.user.id, // required
+    // })
 
-    let { data: profiles, error2 } = await supabase
-      .from("profiles")
-      .select("*");
+    const newMatchData = {};
 
-    const user = profiles[0];
+    // add keys to object if valid to prevent error in uploading to database
+    opponent !== null ? newMatchData.opponent = opponent : null
+    props.user.username !== null ? newMatchData.username = props.user.username : null
+    did_win !== null ? newMatchData.is_win = did_win : null
+    date !== null ? newMatchData.date = date : null
+    notes !== null ? newMatchData.notes = notes : null
+    is_singles !== null ? newMatchData.is_singles = is_singles : null
+    score !== null ? newMatchData.score = score : null
+    surface !== null ? newMatchData.surface = surface : null
+    props.user.id !== null ? newMatchData.user_id = props.user.id : null
 
-    const newMatchData = {
-      opponent: opponent,
-      username: user.username, // required
-      is_win: did_win, // required
-      date: date,
-      notes: notes,
-      is_singles: is_singles, // required
-      score: score, // required
-      surface: surface,
-      user_id: user.id, // required
-    };
-
+    // testing
     console.log({
       opponent: opponent,
-      username: user.username, // required
+      username: props.user.username, // required
       is_win: did_win, // required
       date: date,
       notes: notes,
       is_singles: is_singles, // required
       score: score, // required
       surface: surface,
-      user_id: user.id, // required
+      user_id: props.user.id, // required
     });
 
+    console.log(newMatchData)
+
+    // sends new match to supabase
     const { data, error } = await supabase.from("matches").insert([
       newMatchData
     ]);
-
-    // fetch('/api/postMatchData', {
-    //   method: 'POST',
-    //   body: JSON.stringify(newMatchData),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
   }
 
   return (

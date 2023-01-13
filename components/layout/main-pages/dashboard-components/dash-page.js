@@ -12,7 +12,7 @@ export default function DashPage(props) {
           Create Match
         </button>
       </div>
-        <DashItems />
+        <DashItems data={props.data}/>
     </div>
   );
 }

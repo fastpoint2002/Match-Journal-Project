@@ -1,8 +1,9 @@
 import UserProfile from "../components/layout/profile/user-profile";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import PageConstructionMessage from "../components/layout/main-pages/construction";
 
 function ProfilePage() {
-  return <UserProfile />;
+  return <PageConstructionMessage />;
 }
 
 export const getServerSideProps = async (ctx) => {

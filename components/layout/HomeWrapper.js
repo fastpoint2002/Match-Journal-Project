@@ -26,23 +26,16 @@ export default function HomeWrapper(props) {
           <div className="hidden items-center space-x-6 font-bold text-grayishViolet lg:flex">
             <RightLinks />
           </div>
-          {/* Hamberger Menu */}
-          {/* <button
-            id="menu-btn"
-            className="hamburger block focus:outline-none"
-            type="button"
-          >
-            <span className="hamburger-top"></span>
-            <span className="hamburger-middle"></span>
-            <span className="hamburger-bottom"></span>
-          </button> */}
           <div className="lg:hidden">
             <Menu />
           </div>
         </div>
         {/* Mobile Menu */}
       </nav>
+      <div className="flex-grow-1">
+
       {props.children}
+      </div>
 
       <footer className="bg-veryDarkViolet py-16">
         <div className="jusitfy-between container mx-auto flex flex-col items-center space-y-16 md:flex-row md:items-start md:space-y-0">

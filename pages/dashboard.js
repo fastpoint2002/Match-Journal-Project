@@ -1,10 +1,8 @@
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import DashboardDisplay from "../components/layout/main-pages/dashboard-layout";
-import fs from 'fs'
-import path from 'path'
 
-function DashboardPage() {
-  return <DashboardDisplay />;
+function DashboardPage(props) {
+  return <DashboardDisplay data={props.data} user={props.user} />;
 }
 
 export const getServerSideProps = async (ctx) => {
@@ -24,20 +22,15 @@ export const getServerSideProps = async (ctx) => {
     };
 
   // // Run queries with RLS on the server
-  // const { data } = await supabase.from('users').select('*')
-
-  let { data: matches, error } = await supabase
-    .from("matches")
-    .select("*")
-
-    const filePath = path.join(process.cwd(), 'data', 'matches.json')
-    fs.writeFileSync(filePath, JSON.stringify(matches));
+  let { data: matches, error } = await supabase.from("matches").select("*");
+  let { data: profiles, error2 } = await supabase.from("profiles").select("*");
+  const user_profile = profiles[0]
 
   return {
     props: {
       initialSession: session,
-      user: session.user,
-      //     data: data ?? [],
+      user: user_profile,
+      data: matches ?? [],
     },
   };
 };
