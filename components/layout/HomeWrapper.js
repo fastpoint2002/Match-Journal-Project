@@ -74,13 +74,13 @@ export default function HomeWrapper(props) {
               </div>
               <div className="flex flex-col items-center space-y-3 md:items-start">
                 <Link
-                  href="/"
+                  href="/feedback"
                   className="capitalize text-grayishViolet hover:text-cyan"
                 >
                   Feedback
                 </Link>
                 <Link
-                  href="/"
+                  href="/feedback"
                   className="capitalize text-grayishViolet hover:text-cyan"
                 >
                   Support

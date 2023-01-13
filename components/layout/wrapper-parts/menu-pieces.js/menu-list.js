@@ -27,18 +27,18 @@ export default function MenuList(props) {
           Home
         </Link>
         <Link
-          href="/features"
-          className="w-full text-center"
-          onClick={props.menuHandler}
-        >
-          Features
-        </Link>
-        <Link
           href="/feedback"
           className="w-full text-center"
           onClick={props.menuHandler}
         >
           Feedback
+        </Link>
+        <Link
+          href="/features"
+          className="w-full text-center"
+          onClick={props.menuHandler}
+        >
+          Features
         </Link>
         {session.session && (<Link
           href={"/"}

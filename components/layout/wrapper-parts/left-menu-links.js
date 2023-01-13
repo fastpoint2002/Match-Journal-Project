@@ -24,16 +24,16 @@ export default function LeftMenu() {
             Home
           </Link>
           <Link
-            href="/features"
-            className="text-grayishViolet hover:text-veryDarkViolet"
-          >
-            Features
-          </Link>
-          <Link
             href="/feedback"
             className="text-grayishViolet hover:text-veryDarkViolet"
           >
             Feedback
+          </Link>
+          <Link
+            href="/features"
+            className="text-grayishViolet hover:text-veryDarkViolet"
+          >
+            Features
           </Link>
     </Fragment>
   );
