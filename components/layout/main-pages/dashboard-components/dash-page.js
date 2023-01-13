@@ -2,7 +2,7 @@ import DashItems from "./dash-items";
 
 export default function DashPage(props) {
   return (
-    <div className="bg-gray-100 h-screen">
+    <div className="h-min-screen bg-gray-100">
       <div className="flex items-center justify-around bg-white py-4 px-6">
         <h1 className="text-3xl font-medium">Matches</h1>
         <button
@@ -12,7 +12,12 @@ export default function DashPage(props) {
           Create Match
         </button>
       </div>
-        <DashItems data={props.data}/>
+      <DashItems
+        data={props.data}
+        matchIndex={props.matchIndex}
+        showMatchModalHandler={props.showMatchModalHandler}
+        hidden={props.hidden}
+      />
     </div>
   );
 }

@@ -11,8 +11,6 @@ export default function CreateMatchModal(props) {
   const surfaceRef = useRef();
   const notesRef = useRef();
   const singlesRef = useRef();
-
-  console.log(props.user)
   
   async function submitFormHandler(event) {
     // can use this to prevent reload but won't for now because needs to fetch after sending
@@ -60,19 +58,17 @@ export default function CreateMatchModal(props) {
     props.user.id !== null ? newMatchData.user_id = props.user.id : null
 
     // testing
-    console.log({
-      opponent: opponent,
-      username: props.user.username, // required
-      is_win: did_win, // required
-      date: date,
-      notes: notes,
-      is_singles: is_singles, // required
-      score: score, // required
-      surface: surface,
-      user_id: props.user.id, // required
-    });
-
-    console.log(newMatchData)
+    // console.log({
+    //   opponent: opponent,
+    //   username: props.user.username, // required
+    //   is_win: did_win, // required
+    //   date: date,
+    //   notes: notes,
+    //   is_singles: is_singles, // required
+    //   score: score, // required
+    //   surface: surface,
+    //   user_id: props.user.id, // required
+    // });
 
     // sends new match to supabase
     const { data, error } = await supabase.from("matches").insert([

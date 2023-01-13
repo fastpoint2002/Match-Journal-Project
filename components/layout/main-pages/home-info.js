@@ -1,7 +1,10 @@
 import HomeWrapper from "../HomeWrapper";
 import Link from "next/link";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 export default function HomeInfo() {
+  const session = useSessionContext();
+
   return (
     <HomeWrapper>
       <section id="home">
@@ -15,12 +18,18 @@ export default function HomeInfo() {
               your performance
             </p>
             <div className="mx-auto lg:mx-0">
-              <Link
+              {!session.session && (<Link
                 href="/auth"
                 className="rounded-full bg-cyan py-5 px-10 text-2xl font-bold text-white hover:opacity-70 lg:py-4"
               >
                 Request Access
-              </Link>
+              </Link>)}
+              {session.session && (<Link
+                href="/dashboard"
+                className="rounded-full bg-cyan py-5 px-10 text-2xl font-bold text-white hover:opacity-70 lg:py-4"
+              >
+                To Dashboard
+              </Link>)}
             </div>
           </div>
         </div>

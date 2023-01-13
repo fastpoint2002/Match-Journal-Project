@@ -8,7 +8,7 @@ import FacebookIcon from "../../public/icons/icon-facebook";
 
 export default function HomeWrapper(props) {
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex flex-col justify-between min-h-screen">
       {/* Nav Container */}
       <nav className="container relative mx-auto p-6">
         {/* Flex container for all items */}
@@ -32,7 +32,7 @@ export default function HomeWrapper(props) {
         </div>
         {/* Mobile Menu */}
       </nav>
-      <div className="flex-grow-1">
+      <div className="grow">
 
       {props.children}
       </div>

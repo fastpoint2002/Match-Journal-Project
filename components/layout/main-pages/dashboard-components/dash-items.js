@@ -1,13 +1,12 @@
 
 export default function DashItems(props) {
   const matchData = props.data
-  console.log(props.data)
 
   return (
     <div className="mx-6 my-8 flex flex-col items-center">
         {/* Maps each match from the matches.json file */}
-      {matchData.map((match) => (
-        <button key={match.id} className="mb-4 max-w-sm overflow-hidden rounded-lg bg-white shadow-md">
+      {matchData.map((match, index) => (
+        <button onClick={props.showMatchModalHandler} key={match.id} id={index} className="mb-4 max-w-sm overflow-hidden rounded-lg bg-white shadow-md">
           <div className="flex flex-col items-start px-6 py-4">
             {/* Card Title */}
             <div className="mb-2 text-lg font-medium">
