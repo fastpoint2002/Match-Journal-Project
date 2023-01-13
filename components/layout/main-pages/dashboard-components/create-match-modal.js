@@ -11,6 +11,7 @@ export default function CreateMatchModal(props) {
   const surfaceRef = useRef();
   const notesRef = useRef();
   const singlesRef = useRef();
+  let tempId = 10000000000
   
   async function submitFormHandler(event) {
     // can use this to prevent reload but won't for now because needs to fetch after sending
@@ -31,18 +32,20 @@ export default function CreateMatchModal(props) {
     props.modalHandler.call();
     document.getElementById("newMatch").reset();
 
+    tempId++
     // updates local match data file
-    // props.data.push({
-    //   opponent: opponent,
-    //   username: props.user.username, // required
-    //   is_win: did_win, // required
-    //   date: date,
-    //   notes: notes,
-    //   is_singles: is_singles, // required
-    //   score: score, // required
-    //   surface: surface,
-    //   user_id: props.user.id, // required
-    // })
+    props.data.push({
+      id: tempId,
+      opponent: opponent,
+      username: props.user.username, // required
+      is_win: did_win, // required
+      date: date,
+      notes: notes,
+      is_singles: is_singles, // required
+      score: score, // required
+      surface: surface,
+      user_id: props.user.id, // required
+    })
 
     const newMatchData = {};
 
