@@ -54,13 +54,13 @@ export default function MenuList(props) {
         Login
       </Link>)}
         {session.session && (<Link
-          href={"/auth"}
+          href={"/profile"}
           className="w-full rounded-full bg-cyan py-3 text-center"
         >
           Profile
         </Link>)}
         {!session.session && (<Link
-          href={"/profile"}
+          href={"/auth"}
           className="w-full rounded-full bg-cyan py-3 text-center"
         >
           Sign Up

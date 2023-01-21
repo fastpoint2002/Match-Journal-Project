@@ -21,11 +21,16 @@ export default function DashItems(props) {
     )
   }
 
+  function formatDate(dateString) {
+    const dateArray = dateString.split("-");
+    return (`${dateArray[1]}/${dateArray[2]}/${dateArray[0].slice(2)}`)
+  }
+
   return (
     <div className="mx-6 my-8 flex flex-col items-center">
         {/* Maps each match from the matches.json file */}
       {matchData.map((match, index) => (
-        <button onClick={props.showMatchModalHandler} key={match.id} id={index} className="mb-4 max-w-sm overflow-hidden rounded-lg bg-white shadow-md">
+        <button onClick={props.showMatchModalHandler} key={match.id} id={index} className="mb-4 max-w-sm overflow-hidden rounded-lg bg-white shadow-md w-96">
           <div className="flex flex-col items-start px-6 py-4">
             {/* Card Title */}
             <div className="mb-2 text-lg font-medium">
@@ -33,7 +38,8 @@ export default function DashItems(props) {
             </div>
             {/* Card Description */}
             <p className="text-left text-base text-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {(match.notes.length > 84) && match.notes.slice(0, 80) + '...'}
+              {!(match.notes.length > 84) && match.notes}
             </p>
           </div>
           <div className="flex items-center px-6 py-4">
@@ -59,7 +65,8 @@ export default function DashItems(props) {
             </span>
             {/* Date Tag */}
             {match.date && (<span className="mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
-              {match.date}
+              {/* {match.date} */}
+              {formatDate(match.date)}
             </span>)}
           </div>
         </button>
