@@ -2,9 +2,9 @@ import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import PageConstructionMessage from "../components/layout/main-pages/construction";
 import ProfilePageBody from "../components/layout/main-pages/profile-page";
 
-function ProfilePage() {
-  return <PageConstructionMessage />
-  // return <ProfilePageBody />;
+function ProfilePage(props) {
+  // return <PageConstructionMessage />
+  return <ProfilePageBody user={props.user}/>;
 }
 
 export const getServerSideProps = async (ctx) => {
@@ -24,15 +24,15 @@ export const getServerSideProps = async (ctx) => {
     }
 
   // // Run queries with RLS on the server
-  // const { data } = await supabase.from('users').select('*')
+  let { data: profiles, error2 } = await supabase.from("profiles").select("*");
+  const user_profile = profiles[0];
 
   return {
     props: {
       initialSession: session,
-      user: session.user,
-  //     data: data ?? [],
+      user: user_profile,
     },
-  }
+  };
 }
 
 export default ProfilePage;

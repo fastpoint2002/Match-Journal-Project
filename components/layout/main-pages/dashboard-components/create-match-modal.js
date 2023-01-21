@@ -11,7 +11,7 @@ export default function CreateMatchModal(props) {
   const surfaceRef = useRef();
   const notesRef = useRef();
   const singlesRef = useRef();
-  let tempId = 10000000000;
+  // let tempId = 10000000000;
 
   async function submitFormHandler(event) {
     // can use this to prevent reload but won't for now because needs to fetch after sending
@@ -29,23 +29,20 @@ export default function CreateMatchModal(props) {
     const did_win = is_win === "Win" ? true : false;
     const is_singles = singles === "Singles" ? true : false;
 
-    props.modalHandler.call();
-    document.getElementById("newMatch").reset();
-
-    tempId++;
+    // tempId++;
     // updates local match data file
-    props.data.push({
-      id: tempId,
-      opponent: opponent,
-      username: props.user.username, // required
-      is_win: did_win, // required
-      date: date,
-      notes: notes,
-      is_singles: is_singles, // required
-      score: score, // required
-      surface: surface,
-      user_id: props.user.id, // required
-    });
+    // props.data.push({
+    //   id: 101010101,
+    //   opponent: opponent,
+    //   username: props.user.username, // required
+    //   is_win: did_win, // required
+    //   date: date,
+    //   notes: notes,
+    //   is_singles: is_singles, // required
+    //   score: score, // required
+    //   surface: surface,
+    //   user_id: props.user.id, // required
+    // });
 
     const newMatchData = {};
 
@@ -78,7 +75,12 @@ export default function CreateMatchModal(props) {
     // sends new match to supabase
     const { data, error } = await supabase
       .from("matches")
-      .insert([newMatchData]);
+      .insert([newMatchData])
+      .select();
+
+    props.data.push(data[0]);
+    props.modalHandler.call();
+    document.getElementById("newMatch").reset();
   }
 
   return (
@@ -172,7 +174,7 @@ export default function CreateMatchModal(props) {
                 </label>
                 <div className="relative">
                   <select
-                  required
+                    required
                     ref={surfaceRef}
                     className="form-select rounded-md border border-gray-400 bg-white py-2 px-3 leading-5 text-gray-900 focus:border-blue-500 focus:outline-none"
                   >
@@ -223,7 +225,7 @@ export default function CreateMatchModal(props) {
                 Notes
               </label>
               <textarea
-              placeholder="Other important match factors - we will be upgrading the form in the future!"
+                placeholder="Other important match factors - we will be upgrading the form in the future!"
                 className="form-input w-full rounded-md border border-gray-400 py-2 px-3 leading-5 text-gray-900"
                 rows="5"
                 ref={notesRef}

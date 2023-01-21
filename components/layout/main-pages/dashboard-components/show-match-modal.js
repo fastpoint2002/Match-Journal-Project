@@ -1,23 +1,20 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
-
 export default function ShowMatchModal(props) {
   const mainClassString = props.hidden;
   const data = props.data[props.matchIndex];
-  const supabase = useSupabaseClient()
+  const supabase = useSupabaseClient();
 
   async function deleteMatchHandler() {
     const id = data.id;
 
-    if (id < 10000000000) {
-      const { data2, error2 } = await supabase
-        .from("matches")
-        .delete()
-        .eq("id", id);
-      
-      delete props.data[props.matchIndex]
-    }
-    props.showMatchModalHandler.call()
+    const { data2, error2 } = await supabase
+      .from("matches")
+      .delete()
+      .eq("id", id);
+
+    delete props.data[props.matchIndex];
+    props.showMatchModalHandler.call();
   }
 
   if (props.matchIndex) {
@@ -120,9 +117,6 @@ export default function ShowMatchModal(props) {
                 </div>
               </div>
               <div className="flex items-center justify-end">
-                <p className="mr-4 text-left text-xs text-slate-400">
-                  Might have to refresh for delete to work if just added (temporary bug)
-                </p>
                 <p className="mr-4 text-right text-xs text-slate-400">
                   Warning - There is no confirmation for delete
                 </p>
