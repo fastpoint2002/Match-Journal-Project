@@ -22,7 +22,7 @@ export default function HomeInfo() {
                 href="/auth"
                 className="rounded-full bg-cyan py-5 px-10 text-2xl font-bold text-white hover:opacity-70 lg:py-4"
               >
-                Request Access
+                Register Today
               </Link>)}
               {session.session && (<Link
                 href="/dashboard"
