@@ -4,7 +4,7 @@
 ## Features
 - Create Profiles
 - User Authentication
-- Create and delete matches in a dashboard
+- Create, view, and delete matches in a dashboard
 
 ## Technologies
 - Next.js
