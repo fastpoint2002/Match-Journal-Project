@@ -1,9 +1,16 @@
-Bug Notes 
+# Match Journal
+*Match Journal* is a web application that enables players to 
 
-- There is no error handling - oop
-- If long string with no spaces in notes - text does not wrap
-- You can see the wrong button for a second on the home page
-- Delete button and confirmation
-- Delete button without refresh
-- the hamburger menu going away before refresh 
-- maybe have a reloading page 
+## Features
+- Create Profiles
+- User Authentication
+- Create and delete matches in a dashboard
+
+## Technologies
+- Next.js
+- TailwindCSS
+- Supabase
+- Vercel
+
+## Support
+For any questions or feedback, please contact rpatel1@swarthmore.edu
